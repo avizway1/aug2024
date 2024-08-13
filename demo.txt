@@ -1,0 +1,515 @@
+
+========================================================================
+
+Course Content : avinash.s3.amazonaws.com/aws.pdf
+
+========================================================================
+
+AWS @ 9:00 AM (IST) by Mr.Avinash
+
+Cloud Computing (Optional Sessions):
+Day-1 https://youtu.be/HahwZwv1LvA
+Day-2 https://youtu.be/mSJvTin9Dto
+Day-3 https://youtu.be/JkWXBOByH7w
+
+AWS Demos:
+Day 1 : https://youtu.be/vH96kAji_CE
+Day-2 : https://youtu.be/vwmWNjAYOIc 
+Day-3 : https://youtu.be/zglIA3JMYt0
+
+========================================================================
+
+
+*Aws @  Mr. Avinash sir 9:00 AM*
+
+*Fee 10,000/--(including GST) Without recorded videos*
+
+*Fee- 14,000/- (including GST)  recorded videos*  
+
+*including course duration 3 months  videos valid for  extra 6 months after course complete and un download able*
+
+*IF YOU WISH TO DROP UR CLASS AND IF UR GETTING TIMINGS ISSUE U HAVE TO INFORM BATCH ADMIN & Payment applicable for same faculty it wont be reflected to othere faculty as u have to pay rejoining fee for other faculty* 
+
+
+ONCE FEE PAID WONT GET REFUND if ur taking break from class Payment valid for 6 months only 
+
+Payment link :- https://rzp.io/l/NareshITech
+( credit card , phonepe , google pay , paytm )
+
+Bank Details 
+Name: Naresh i Technologies
+A/C No. 50200022639833     
+Bank: HDFC
+A/C Type: Current Account
+IFSC Code: HDFC0001627
+MICR Code: 500240035
+Branch Code: 001627
+Branch:  Ameerpet
+
+After the payment please share your transaction  screenshot they only get the new link for the regular classes 
+
+
+Shubham (ADMIN)  only WhatsApp 
+Mobile: 7337313415
+
+
+========================================================================
+
+Cloud computing : you are using someone else computer. 
+
+Definition of Cloud Computing : Cloud computing means storing and accessing data and programs over the Internet instead of your computer's hard drive.
+
+NIST Definition of Cloud Computing : 
+Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.
+
+Pay-as-go ==> Pay for the resources you are actually using.. 
+if you are using a server for 5 min, you will get charged for 5 min only.. 
+
+
+On-demand self-service : you can choose what service you want to use. you will get charged for the resources you are actually using. you no need to depend on service provider to get these things done.
+
+Rapid elasticity : We can easily Upgrade and downgrade the resources. it wont take much time to perform. 
+Example : We can launch server with very small config, if required we can upgrade same server to very high configuration. No need to sped lot of time. no need to worry about hardware dependencies.
+
+
+t2.micro	: 1 CPU, 1 RAM 
+medium		: 2 CPU, 4 RAM
+xlarge		: 4 CPU, 16 RAM
+
+
+Measured Services : Whatever you use, the usage will be measured. (per gb/month, /hr, /sec)
+
+Broad network access & High Availability : Cloud service providers has infra almost across the globe. Instead of spending time and building our own infra, we can use this cloud providers infra and deliver our application quickly.
+
+Resource pooling. : You can use cloud shared tenancy mechanism to save cost. Underlying resources share with multiple customers.
+
+----------------
+
+Pay-as-you-go : pay for the resources you are actually using. 
+
+You used a server for 1 hr in a day = 1 hr cost..
+
+----------------
+
+DEPLOYMENT MODELS :
+
+Public cloud : THis model is open for everyone. Anyone can create an accont and start using. 
+Azure, GCP, AWS..  Maintenance : Service provider responsibility. 
+
+Private cloud  : Not open for everyone, Dedicated for only one organisation.  Only that org users / only authorised uses can use. Maint: Your team can fix it / you can take assistance from 3rd party.
+
+Hybrid cloud : Combination of one or more cloud deployment models.. Public + public / Public + private
+Existing Servers + creting new svrs in AWS..  Azure + AWS.. 
+==> Site-to-site VPN connection, AWS Direct Connect
+
+Community cloud : group of org build the infra together and only that group of org use that infra. main : One of the org from group / 3rd party.
+
+=================================================================================
+
+
+Service models of Cloud Computing : 
+
+-> IaaS : We need takes care about the OS level onwords. No need to take care about Physical resources.
+
+-> PaaS : Platform as a Service : Moderate efforts.. Our efforts is to design application only, not infra management / configuration management.
+
+-> SaaS : Software as a Service : No efforts / very very less efforts.
+
+
+Order : SaaS
+Dining in rest : PaaS
+cooking in existing kitchen : IaaS
+
+Build your kitchen then cook : 
+
+
+Requirement : I need a website that can be accesable across the globe.!
+
+
+
+Self Managed/on-Premise : 
+
+SaaS : Software as a Service : Lightsail : Create and deliver.. (customize if required)
+PaaS : Platform as a Service : AWS Elastic beanstalk.. provide my data.. and deliver my website..
+IaaS : Infrastructure as a Service : launch ec2 instance/Server.. install webserver.. and create data to deliver..
+
+
+==========================================================================================
+
+Free Tier : From the day of your account creation , AWS offerig free tier resources for first 12 Months.
+
+s3 : Storager service (AWS Verison of Google Drive)
+ec2 : elastic compute cloud : Service to launch and run Servers in aws/cloud.
+
+S3 : 5 gb/Month Free tier.. 2,000 PUT, 20,000 GET Operation /Month.. 
+EC2 : 1 ec2 instance ==> 750 Hrs/Month.. 
+
+
+AWS ; CSP Cloud Service Provider.. 
+
+
+Why we need to learn only AWS.!  
+AWS own 51% market share.. 
+
+
+=======================================================================================
+
+D: 02/08/2024
+
+Region : geographical location or Physical location.. No specific boundaries and As of Aug, 2024, we have 33 regions across the globe.. 
+--> No technical definiation available for region.
+
+Every Region has a code. 
+Mumbai : ap-south-1
+Hyd : ap-south-2
+Singapore : ap-southeast-1
+
+--> We can choose any region across the globe and we can launch our resources.
+
+
+Availability Zone / AZs : AZ is nothing but a data center or combination of multiple DCs.
+Each AZ is designed to isolate/sustain another AZ failure.
+
+Mumbai : we have 3 AZs.. ap-south-1a, ap-south-1b and ap-south-1c
+hyd ; ap-south-2, ap-south-2a, ap-south-2b and ap-south-2c
+
+
+Edge Location / PoP (point of Presence) : As of Aug, 2024, We have 600+ Edge locations across the globe.
+CDN Technology : Content Delivery Network : 
+
+
+===============================================================================================
+
+D: 05/08/2024
+
+
+1. use your existing EMAIL and Provide account name.
+2. Login to email you provided and enter the code and confirm.
+3. Setup password
+4. provide contact information  (name, Address, ph number)
+5. Provide payment information (CC/DC)
+6. Identit verification (aadhar/pan card and DOB)
+7. Contact verification (enter ph number & choose "text"/"call".. Enter 4 digit pin)
+8. Choose Support Plan (BASIC)
+9. Login to your aws account. (Email address and Password)
+
+BASIC : Free, No tech support from AWS
+DEVELOPER : 29$/Month.. 12-24 local business hrs support via Email.. 1 user, any no of tickets
+BUSINESS : 100$/Month.. 1 HR 24/7, Email, phone and chat support.. any user, any no of tickets
+ENTERPRISE : 15,000$/month.. 15 Min, 24x7 Email, phone and chat support.. any user, any no of tickets.. and Dedicated TAM (technical Accouunt Manager), Annual Operational and architectral reviews..
+
+
+
+
+Support Plans : 
+
+Basic Support Plan : Always Choose This.
+Developer SP
+Business SP
+Enterprise On-Ramp SP
+Enterprise SP : 
+
+
+Email Support, Phone Support and Chat support.. 
+
+
+1. Account and Billing related assistance : Free and apply for all Support Plans, 24x7 365 days via email, phone and chat support.
+
+2. Technical Assistance : Based on Support plan we choose.
+
+
+========
+
+
+Basic Support plan : Free.. : CHOOSE THIS WHEN YOU ARE CREATING YOUR OWN AWS ACCOUNT
+2 --> No technical support from AWS. AWS Knowledge Base articles,, Re:post.. 
+Trusted Advisor : Some core area checks
+
+
+-----
+
+Developer Support Plan : Starts from 29$/Month... 
+2 --> With in 12-24 Local business hours we will get assiatance.. An AWS Associate.. Email support..
+1 user can raise tickets, but we can raise unlimited tickets..
+Trusted Advisor : Some core area checks
+
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours 
+
+-----
+
+Business Support Plan : starts from 100$/Month
+2 --> With in 1 hours we will get assiatance..  AW AWS Engineer.. email, phone and chat support.. 
+Any user can raise tickets, we can raise unlimited tickets.. 
+Trusted Advisor : Full checks
+
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours
+Production system impaired: < 4 hours
+Production system down: < 1 hour
+
+----
+
+Enterprise On-Ramp : Starts from 5,500$/month
+2 --> With in 30 min we will get assiatance.. An AWS Sr. engineer.. email, phone and chat support.. 
+Any user can raise tickets, we can raise unlimited tickets.. 
+Annual Architectural and Operational reviews by AWS
+Trusted Advisor : Full checks
+
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours
+Production system impaired: < 4 hours
+Production system down: < 1 hour
+Business/Mission-critical system down: < 30 minutes
+
+--
+
+Enterprise SP : Starts from 15,000$/month
+2 --> With in 15 min we will get assiatance.. An AWS Sr. engineer.. email, phone and chat support.. 
+Any user can raise tickets, we can raise unlimited tickets.. 
+AWS Allocated a Dedicated TAM (Technical account manager)
+Annual Architectural and Operational reviews by AWS
+AWS provides trainings on the services
+Trusted Advisor : Full checks
+
+Case Severity : 
+General guidance: < 24 hours
+System impaired: < 12 hours
+Production system impaired: < 4 hours
+Production system down: < 1 hour
+Business/Mission-critical system down: < 15 minutes
+
+
+We can use "Enterprise SP" and "Enterprise on-ramp SP" for multiple AWS accounts. No need to opt support plan for every account we create.
+==> 1 support plan is sufficient for 100+ acocunts also
+
+
+====================================================================================================
+
+D: 
+
+
+Root User : Unrestricted access on AWS account.
+** We dont use this user for day-to-day activities.
+
+Highly recommended to Enable "2/multi factor Authentication" for root user.
+
+
+IAM User : We always follow "Least privilages mechanism". Using IAM service, We can create users, groups and we can manage user accesses on AWS resources.
+-> provide permissions/access that really reqwuired to perform his job duties.
+-> 
+
+Storage Administration : IAM User with Username and password : Add permissions to access only Storage
+
+
+User : Only S3 Access
+User : Only ec2 access
+User : Provide read only access
+
+====================================================================================================
+
+
+Root user : When ever you are login using an email id and password, we call that user as "root user". 
+==> Root user have unrestricted access on our AWS account.
+==> Changing support plan / changing payment methods / closing aws account / transfer account.
+
+We can secure this account by enabling MFA / 2-factor authentication.
+
+
+IAM User : Identity and Access Management : In IAM, We can create users, groups and we can manage user permissions. 
+
+Policy : Set of permissions on our AWS Services.
+
+--> least privilages mechanism.
+
+
+
+Root user : One AWS account can contains only one root user. Reason : We can use only one email id to create an AWS account.
+If you are using this email to login to your aws account, you are login as root user.
+
+Why we need an IAM user.
+
+2 AWS guys.. They need a junior guy for monitoring purpose.. 
+create an Account for this Jr guy, provide "ReadOnly" access to this user. 
+
+least privilages mechansim: provide permissions to perform his job duties. Do not provide any additional permissions.
+
+
+
+--> Are you okay to share "root credentials" to all these guys.???
+
+AWS Administrator : Created and Manages resources. 
+Developers : Limited access on specific resources based on project requirement.
+DBA : manages Databases, provide access to DBs and takes backup of DB
+Support Team : Monitors the resources and alert respectives teams when any resource is over utilised / any abnoramal activity identified.
+
+AWS Admin : Create an IAM user with "AdministratorACcess" Policy.
+DBA : create an IAM user with "DBAdminAccess"
+Support Team ; Create an IAM user and provide "ReadOnly" access policy.
+
+
+Authetication : using username and password you can login.
+Authorisation : After login, Only some services are allowed, if you try to access any other service, it won;t allow us to access, Denies with "you are not autheorized" to perform this operation.
+-> permissions denied / Not allowed to access / not authorized to access.
+
+
+
+
+Step 1 : Enter user Name
+Enable "provide access to AWS management console" and choose "I want to create an IAM user"
+Enable "Users must create a new password at next sign-in"
+
+Step 2 : Set permissions.
+
+Policy : Set of permisisons on our AWS account.
+
+-> Create a group or add user to an existing group. User gets permisisons from group.
+-> COpy permisisons from an existing user.
+-> Attach permissions directly to the user.
+
+Attaching "S3FullAccess" policy
+
+Step 3 : Review and create
+
+
+To Setup an Alias to our aws account, Navigate to IAM Dashboard and scroll down.
+
+current url : 
+https://501170964283.signin.aws.amazon.com/console
+https://avizway9.signin.aws.amazon.com/console
+
+
+Task : Create an AWS account and Enable MFA for Root User.
+** Setup Account Alias and Custom Password standards.
+
+Task 2 : Create an IAM user in your AWS account, Provide "S3FullAccess" and login as this user, verify his access on S3 platform by creating an S3 Bucket.
+
+Task 3 : Create an IAM user in your accountm, provide "IAM FullAccess" and login as this user, verofy his access on IAM service, by creating another IAM user.
+
+Task 4 : Create an IAM user in your account, provide "AdministratorAccess" and login as this user, verify his access on IAM service and S3 Service, by creating another IAM user and another s3 bucket.
+** Try to Verify account information. Allow/Deny.?
+
+Task 5 : Denied ; How to enable billing access to this IAM user.
+
+
+=================================================================================
+
+D: 08/08/2024
+
+Policy : Writtens in JSON format. Document contains set of permissions on our AWS account.
+
+S3FullAccess : Allow an IAM user to perform anything on s3 service only.
+IAMFullAccess : Allow an IAM user to perform any operation on IAM service.
+AdministratorAccess : Allow an IAM user to perform any operation on Any Service / Applicaiton available in our AWS account. username : Avinash_T
+
+"AdministratorAccess user" = "root user" WITHOUT account management.
+
+
+Implicit Allow : 
+IAM User is allocated with "S3FullAccess" : he can access only s3 service. Apart from S3 service, he is not allowed to access any other servcies.
+
+Explicit Deny : 
+
+Create an IAM user, provide him all services access, but dont provide "S3Access".
+
+
+1. AWS managed policy (Based on available Service)
+2. AWS Managed - Job Function policy (Based on Standard job roles available in market)
+3. Customer Managed (Customer can create based on his cutom requirement)
+
+** We cannot Modify or delete AWS managed polocies.
+
+1. ec2 : ec2readponly, ec2full, ec2poweruser....
+2. DBA, DataScientist, PowerUser, Administaror, network Admin.. 
+
+
+1. I Need a Policy that can allow anything on S3 and ec2 service.. 
+
+
+Policy contains below components:
+
+--> Service : s3
+--> Effect : Allow / Deny : Allow
+--> Actions : On (S3) Service, What OPERATIONS you want to take effect (Allow).
+--> Resources : Buckets/Folders/files.. : Allow All resources.
+
+
+Requirement : create a Deny policy for S3 service.
+
+Create an IAM user, Provide him "AdministratorAccess", then will add "DenyS3" policy also.
+==> verify s3 is accesable or not.!!
+
+
+If you allow 100 times and deny 1 time at any level (user/group/resource) ==> DENY will take effect.
+
+
+Requirement : I need an IAM user, who can read anything from S3 Service, But i dont want to allow him to perform any Weite operaiton on all resources.
+
+
+===============
+
+Task : Create a Customer Managed policy to "deny s3".
+
+Task 2 : Create an IAM user, provide him "AdministratorAccess" and associate "task 1 policy" to this user, login and try to create a bucket.!!!  
+output..?
+
+
+Task 3 : Create a Policy to allow S3FullACcess, but this should work from only one/your Network.
+** You have to add an IP address condition.
+
+https://whatismyipaddress.com/
+115.98.52.35/32
+
+
+================================================================================================
+
+D: 09/08/2024
+
+Inline Policy : Alligned to single user.
+** We use this only in some special cases.
+--> Whenever a user is facing max number of polocies atatched issue, or character limit issue.
+
+--> We cannot reuse, Inline polocies.
+--> hard to track.
+
+
+-----------------
+
+How to tack an IAM user activities.?
+
+We can use "Cloudtrail" service. Cloudtrail logs all user activities. We can filter using username / time / Event.
+This service is enabled in all AWS accounts defaultly. It can store last 90 days activites.
+
+-----------------
+
+How to track user last loged information (or) MFA status.?
+
+Downlaod "Credentials Report" from your aws account. This report provides "user Last loged-in", "user creation date", "MFA Status" and "Accesskeys status".
+
+
+ARN : Amazon Resource Name : Unique identity for our aws resources.
+
+-----------------
+
+How to track resources shared from your aws acocunt to another aws account.?
+
+Use "IAM Access Analyser" and we can identify shared resources.
+--> External Access Analyzer
+--> unused resources analyzer.
+
+-----------------
+
+Permisisons Boundary : This is not a cpommonly used feature. To setup maximum permissions for a user. 
+
+
+
+Task : Create an IAM policy to enable MFA. 
+
+Create an IAM user, provide him "S3 Full Access", Now login as this user, Try to enable MFA himself.
+Now. Attach the policy you created as part of the task, now try to enable/disable/sync/resync MFA.
+
+
+

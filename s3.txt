@@ -1,0 +1,195 @@
+S3 : Simple Storage Service :
+-
+Object based storage :  We cannot install/run any applications/os. : Dropbox / GDrive 
+--> Designed to flat files.
+
+Block based storage : Designed to run OS, We can install/run applications.. : EBS, Instance store volumes. : EC2 
+Storage over the network : Storage runs over the network and it can be mounted to multiple devices. : EFS, FSx : EC2
+
+--> Designed to store objects. We can store any flat files.
+--> We store data in BUCKETS.
+--> Bucket names should be unique across the globe.
+--> Defualtly, we can create 100 buckets, This is a soft limit. use "Service Quota" to incease this limit.
+--> We can store unlimited data in a bucket.
+--> No Pre-provisioning required.
+--> Bucket naming limitations.
+	--> Min char 3, Max 63 char length
+	--> Bucket name should be in small , and numeric
+	--> Bucket name should not start with .
+	--> Should not end with . , No adjesent ..
+	--> Bucket name should not resemble IP address format. (192.168.100.1)
+
+--> We can upload objects to this buckets.
+--> Min obj size : 0 bytes.. Max Obj size: 5 TB
+--> S3 is now required region selection. You first need to choose a region, where you want to create your s3 bucket.
+--> While creating bucket, we need to choose the region. Data physically resides at this regions AZs. 
+
+https://s3.ap-south-1.amazonaws.com/bucketname/objectname (standard URL)
+https://bucketname.s3.ap-south-1.amazonaws.com/objectname (virtual path)
+https://bucketname.s3.amazonaws.com/objectname (virtual path)
+
+Virtual paths won't work if we have . in bucket names.
+
+======================
+
+5 GB Standard Storage.
+2000 PUT Object (Uploads/Month)
+20,000 GET object (Downlaod/Open)
+
+Track your free tier usage using below line.
+Navigate to "Billiong and cost management", under "cost analysis", we have "free tier"
+
+Enable free tier alerts.
+We can configure free tier alerts, to receive notification when your usage is 85% and 100% crossed.
+Under "Preferences and Settings", the "Billing Preferences", choose "free tier alerts"
+
+
+In real env, most of the times we use "S3 Standard" only. 
+
+S3 Storage Classes : 
+
+--> S3 Standard : Defualt storage class for all the data we upload to s3. Data will be available immedeatly.
+Designed to store : Frequently accessed data. 
+Availability : 99.99%,  Durability: 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+--> Standard-IA : Data will be available immedeatly. Designed to store : infrequently accessed data
+Avai : 99.9%, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+--> One Zone-IA : Data will be available immedeatly. Designed to store : infrequently accessed data. Store only non-critical data. Cost less than 40% compared to Standard-IA.
+Avai : 99.5 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : 1 AZs
+
+--> Glacier Flexible Retrieval (Formerly Glacier) : Long-term data archiving with retrieval times ranging from minutes to hours. Data won't be available immedeatly. We need to initiate a data restration to view the data. Restoration takes (1 min - 5 Hrs)
+Avai : 99.99 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+--> Glacier Instant Retrieval : Long-lived archive data accessed once a quarter with instant retrieval in milliseconds. 
+
+--> Glacier Deep Archieve : Long-term data archiving with retrieval times ranging from 12 hrs. Data won't be available immedeatly. We need to initiate a data restration to view the data. Restoration takes (5 - 12 Hrs)
+Avai : 99.99 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+..
+
+S3 Intelligent Tier : If we have unknown access pattern, we can choose. 
+Avai : 99.9 %, Durability : 99.999999999 (11 9's) 
+Data replicates across : >= 3 AZs
+
+RRS : Redused Redundancy Storage : Not Recommanded : Less durability.. 
+Durability : 99.99%, As we have less durability we have high chances to loss the data when compared to another storage classes.
+
+
+S3 Pricing : 
+--> How much data we are storing.
+--> How many GET/PUT operations (uploads/downloaded object count)
+--> Data retrivals
+
+S3 FREE TIER :
+--> 5 GB Standard Storage
+--> 2000 PUT Operations (upload)
+--> 20,000 GET operation (open/download)
+
+Glacier data retrival : 
+Bulk retrieval : Typically within 5-12 hours.
+Standard retrieval : Typically within 3-5 hours.
+Expedited retrieval : Typically within 1-5 minutes when retrieving less than 250 MB.
+
+** Only S3 standard comes under free tier eligibility.
+
+===============================
+
+How to make an Object Public.?
+1. verify Account level "block public access settings". Turn off
+2. verify Bucket lebvel "block public access settings". Turn off, if its enabled.
+3. Enable ACLs. Under bucket permisisons, Navigate to "Object Ownership" and enable ACLs.
+4. Make object Public using ACLs.
+
+Object URL Syantax: 
+
+http://bucketname.s3.amazonaws.com/objectname
+http://s3.regioncode.amazonaws.com/bucketname/objectname
+
+
+
+S3: 
+S3 Storage classes
+Versioning
+LCR
+Replication
+Static website hosting
+Encryption
+Bucket policy
+Perf improvement
+
+
+
+============================================================================================
+
+D: 13/08/2024
+
+--> versioning helps us to get our data to correct state, AWS maintains multiple copies of our data.
+--> If we accedentally overwrite any data or delete any file, we can get it to correct state.
+
+If you are typing "Delete" ==> you'll get delete Marker. 
+If you are typing "perm Delete" ==> You wont get Delete marker.
+
+Delete the "Delete Marker" to get your object back.
+_________
+
+Version : AWS maintains multiple copies in s3 bucket. 
+--> Defaultly versioning will be in Suspended state.
+
+--> When versioning is enabled on bucket, If we delete an object
+
+Versioning : HIDE
+--> S3 will show most recent uploaded object only / Current version objects.
+--> We will get a Delete Marker. 
+--> TO get object back / undo delete, Set Version to SHOW, Delete the delete marker.
+
+Versioning : SHOW
+--> If we delete an object, it deletes permanently.
+
+======================================================================================================
+
+
+Life Cycle Management Rule : 
+
+--> We can apply Rule to entire bucket
+--> We can limit rule to a prefix (Folder)
+--> We can limit rule to objects by specifing a "Tag"
+
+
+S3 Standard --> StandardIA/IT --> Glacier --> Delete
+S3 Standard --> Glacier --> Delete
+S3 Standard --> Delete
+
+
+===========
+
+S3 Static Website Hostic : 
+
+--> We need to make data public read, then only our website will deliver. 
+--> Purchased Domain name should be same as Bucket name. 
+
+http://learnaws.co.in.s3-website.ap-south-1.amazonaws.com  ==> learnaws.co.in
+
+http status codes :
+2XX : OK/Success
+3XX : Redirection
+4XX : Client sider error
+5XX : Server sider error
+
+https://www.free-css.com/free-css-templates
+
+Task : Configure life cycle management rule to transit data from S3Standard to "Delete" after 2 days.
+
+Task : Download a template from Internet. Deliver the webiste using s3 - static webiste feature.
+
+
+
+
+
+
+
+
