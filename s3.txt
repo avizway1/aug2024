@@ -1,3 +1,9 @@
+
+
+Slack Link : https://join.slack.com/t/awswithavinash/shared_invite/zt-2ogvii2ty-f5NcY8QPPVj7Z7VxoTtpMw
+
+====================
+
 S3 : Simple Storage Service :
 -
 Object based storage :  We cannot install/run any applications/os. : Dropbox / GDrive 
