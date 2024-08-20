@@ -201,6 +201,7 @@ Task : Download a template from Internet. Deliver the webiste using s3 - static 
 ======================================================================================================
 
 CRR / SRR : 
+
 --> Source bucket and destination bucket must be enabled with versioning. 
 --> Existing objects will not replicate to the destination bucket.
 --> All future / subsequent uploads will replicate to destination bucket. 
@@ -229,6 +230,70 @@ What is Presign URL :  Short lived urls.
 --> Without making bucket/object public, we can share an s3 object with presign url, this URL works only for sometime.
 
 
-=======================
+=======================================================================================================
+
+D: 20/08/2024
+
+
+Event notifications : 
+
+--> SNS : Simple Notification Service : 1000 EMAILs/Month Free Tier eligibility
+--> SQS : Simple Queue Service
+--> Lambda 
+
+--> Make sure you edit the SNS topic's "Access Policy to everyone".
+
+-------------------------
+
+Object Lock : 
+
+--> Versioning must be enabled.
+
+Permanently allows objects in this bucket to be locked. Additional Object Lock configuration is required in bucket details after bucket creation to protect objects in this bucket from being deleted or overwritten.
+
+Governance : Users with specific IAM permissions can overwrite or delete protected object versions during the retention period.
+
+Compliance : No users can overwrite or delete protected object versions during the retention period.
+
+-----------
+
+Performance : 
+
+3500 PUT Object per second per prefix : upload/overwrite/Delete
+5500 GET Object per second per prefix : Download/open
+
+--> maintain/Increase the uniqueness for the object names.
+--> Use more prefixes (folders)
+
+
+My Req : i want 10,000 Uploads / Sec.. 
+
+Bucket : 5500 uploads/sec.. 
+--> folder1 --> 5500
+--> folder2 --> 5500
+--> folder3 --> 5500
+
+-----------
+
+
+Inventory configurations : Gives complete object information. 
+
+Storage Class Analysis : Analyze storage access patterns to help you decide when to transition objects to the appropriate storage class.
+
+
+-----------
+
+Metrics:
+
+Cloudwatch : Is a monitoring service. It provides graphs on our resource utilisation.
+For S3, We will get 2 graphs for free. 1. Total size of bucket 2. No of objects on s3 bucket.
+
+
+--------
+
+Encryption : 
+
+
+
 
 
