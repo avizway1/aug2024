@@ -275,7 +275,6 @@ Bucket : 5500 uploads/sec..
 
 -----------
 
-
 Inventory configurations : Gives complete object information. 
 
 Storage Class Analysis : Analyze storage access patterns to help you decide when to transition objects to the appropriate storage class.
@@ -289,9 +288,97 @@ Cloudwatch : Is a monitoring service. It provides graphs on our resource utilisa
 For S3, We will get 2 graphs for free. 1. Total size of bucket 2. No of objects on s3 bucket.
 
 
---------
+====================================================================================================
 
-Encryption : 
+D: 21/08/2024
+
+--> In-Transit Encryption : 
+	SSL (Secure socket layer) / TLS (Transport layer secure)
+
+--> SSE (Server Side Encryption) / At-rest : 
+
+SSE-S3 : S3 platform generates and manages the key material. whoever have valid access on S3 platform can decrypt/view the data. (An encryption key that Amazon S3 creates, manages, and uses for you). AES-256
+--> We need to use this to make any data public.
+
+SSE-KMS : Key Management Service : 
+	KMS (AWS managed keys) (aws/s3) DMK (Default Master Key) : KMS Service generates and manages the key material. whoever have valid access on S3 platform can decrypt/view the data. We cannot delete these keys. 
+--> We cannot make data public using this keys.
+
+	 CMK (Customer managed keys) : KMS Service generates and manages the keymaterial.
+Along with S3 platform, the IAM user need to have valid permissions on ENCRYPTION KEY also. 
+NO FREE TIER ELIGIBILITY. COST US.
+
+	SSE-C (Customer Provided Key): Customer generates and upload the key material to KMS and KMS uses this key material to encrypt/decrypt the data. Customer can change the key material at any time. 
+NO FREE TIER ELIGIBILITY. COST US
+
+
+
+--> CSE (Client Side Encryption) : 
+Before uploading data to s3 platform, we can use our own software/applications to encrypt the data. That encryptrd data we can send to s3. AWS is not completely responsible for this mechanism.
+
+Encryption key generation : 
+--> Choose key type : Symmetric /Asymetric : Symetric as s3 supports
+--> Choose key Administrator
+--> Choose Key Users
+--> Review and create
+
+
+---------------------------------------------
+
+https://www.youtube.com/watch?v=r17Z75TqjU0&t=548s
+
+Task : Try to access s3 using 3rd party applications. (S3 browser, Cyberduck, Cloudberry explorer, winscp)
+Steps : Create an IAM user provide s3 readonly/fullaccess, generate Accesskey and SecretKey. Use this with 3rd party tool.
+
+Task 2 : Enable Encryption on s3 bucket and test it. (SSE-S3/AWS Managed key KMS-DMK)
+
+Try to make an object public, after enabling "KMS-DMK". Works or not.?
+and try same thing with SSE-S3 object as well.!
+
+================================================================================================
+
+
+
+
+
+
+Key Material : Logic / encryption methods to encrypt our data.
+
+KMS : key Management Service : Dedicated service to generate and Manage encryption keys.
+
+---
+
+SSE-S3 : Server Side Encryption - S3 : S3 platform generates the key material. Whoever has access to S3 platform, they can decrypt. 
+
+----
+
+SSE-KMS : Server Side Encryption - KMS DMK (Default Master key) : KMS Service generates the key material. Whoever has access to S3 platform, they can decrypt. 
+
+-> It generates automatically based on your services usage.
+-> You need to encrypt atleast one object to get default key in KMS.
+-> Key material rorates by AWS anually.
+
+-----
+
+SSE-KMS CMK (Customer managed keys) : KMS Service generates and Manages the key material. Having access to only S3 service is not sufficient. Users should have access on S3 Service, and should have access on KMS key usage. 
+
+**NO FREE TIER ELIGIBILITY, COST US.
+
+-> Customer need to create manually.
+-> Customer can rotate the key material based on customer requirement. Min days is 90, Max days: 2560 days.
+
+-----
+
+SSE-KMS Customer Provided key material : Customer needs to geenrate and manage key material. Customer need to provide key material to KMS service. Having access to only S3 service is not sufficient. Users should have access on S3 Service, and should have access on KMS key usage. 
+
+
+
+
+
+
+
+
+
 
 
 
