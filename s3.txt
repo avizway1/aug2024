@@ -474,9 +474,6 @@ Eventual consistenacy For overwrite an object / delete an object. (After we dele
 
 =============================================================================================================
 
-
-
-
 AWS Snow Family : 
 
 --> AWS snowcone : 8 TB
@@ -520,24 +517,5 @@ Interview:
 --> encryption
 --> versioning
 --> Bucket policy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
