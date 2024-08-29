@@ -303,3 +303,82 @@ Task : Complete all 4 modules or, Atleast 2 modules.
 https://linuxsurvival.com/
 
 =======================================================================================
+
+D: 29/08/2024
+
+Req: Make this linux Instance as Web Server (Apache).
+
+rpm : Redhat package manager
+yum : Yellowdog Update manager
+dnf : Update for yum
+
+ssh : 22
+RDP : 3389
+http : 80
+https : 443
+mysql : 3306
+mssql : 1433
+nfs : 2049
+
+
+yum install httpd -y
+service httpd status			--> httpd webserver service status
+service httpd start/stop/restart
+chkconfig httpd on				--> Makes httpd as logon service.
+
+path : /var/www/html/
+
+cd /var/www/html/
+
+use vim and create a file with "index.html" name in /var/www/html/ path to deliver it as default webpage.
+
+apache logs store in this location : /var/log/httpd/ (access_log and error_log)
+
+Apache configuration path : /etc/httpd/conf/httpd.conf  ==> edit this file "LISTEN 80", change it to desired port number.. "LISTEN 8080", Save and Quit
+--> Open port 8080 at Security group level.
+
+==> make sure you restart the service to take changes effect.
+
+
+to check web page on modified port : curl http://publicip:8080/
+
+We get 2 types of errors..
+1. Timeout : Your req not able to reach the web server. problem with Security group.
+2. Connection refused : Service is not in running state. Verify status by running "service httpd status"
+
+
+Task 1 : Launch an amazon linux 2, make it as webserver and deliver custom web content. (httpd-apache)
+
+Task 2 : Once task 1, completed. Change apache configuration port from 80 to 8888/8080 and Delive same webpage on 8888/8080 port.
+
+Task 3 : Launch an Amazon Linux 2/2023, install nginx and deliver custom web page.
+
+================================================================================================
+
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+
+cd /var/www/html/
+
+vim index.html  <h1> Sample Data </h1>
+
+service httpd status/stop/restart
+
+To change Apache default port number, navigate to the configuration path (/etc/httpd/conf) and edit the httpd.conf file. (vim httpd.conf)
+At Line 47, You can see LISTEN 80, Change it to desired port number.
+
+We did a config change, we have to restart the service.
+
+service httpd restart
+
+13.235.45.41:8888
+
+
+
+
+
+
+
+
+
