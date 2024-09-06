@@ -618,6 +618,10 @@ Fast snapshot restore : Enable fast snapshot restore to ensure that volumes crea
 
 Interview : What is your ec2 instances/services backup strategy.?
 
+-> What service you are using.?
+-> How youa re filtering/identifying resources.?
+-> How frequently you taking snapshotps.?
+-> What is the retention period of those Snapshots.?
 
 
 ============================================================================================
@@ -632,8 +636,6 @@ current IP : http://3.110.27.61/
 
 Stop and start this instance.
 
-
-
 --------
 
 EIP : Elastic IP Address : If you need a dedicated/fixed IP address for your ec2 instance, you can generate an EIP and associate it.
@@ -643,7 +645,7 @@ NO FREE TIER ELIGIBILITY. IT WILL COST YOU.
 
 ENI (Elastic Network Interface): We can allocate multiple Network Interface Cards (NICard) to a single ec2 instance.
 
-
+NIC : Network interface Card
 __________
 
 
@@ -659,4 +661,51 @@ If you are using mac os, use "SCP" command and try to copy a file to ec2 instanc
 
 
 Task 4 : Go through below article and try to understand it. https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/
+
+
+============================================================================================================
+
+D: 06/08/2024
+
+
+Req : I need 10 ec2 instances, all 10 instances should have  mysql, httpd, tree, additional 2 gb volumne. 
+
+S-1 : Launch 10 instances, connect to each and every instance and perform the required chages/installations.
+
+S-2 : Launch 1 instance, connect to this instance and perform all installations. Then, Create a Image of this instance, From this image you can launch 9 ec2 instance. N num of instance. 
+
+
+1. addl 2 gb volume and data
+2. webpage 
+3. install tree, mysql
+
+
+
+==========================
+
+*** GoldenAMI = CUstomized AMI.. Won't work with keypairs.. We need to change the password.. 
+
+Ec2 instance , Perform customizations --> Create a Golden AMI --> From GAMI we can launch n num of ec2 instance.. 
+
+Similar to Snapshots..
+
+--> We can launch another instance in same region using GAMI.
+--> We can copy Region 1 GAMI to Region 2, And launch an ec2 instance in Region 2. 
+--> We can share GAMI from Acc 1 to Acc 2. 
+--> We can share GAMI to public.
+
+______________________________________
+
+Task 1 : Launch Linux ec2 instance, Make it as webserver.. Add custom webpages.. Add a 2gb volume while launching and make it perm mount.. then Create a Golden AMI and 
+-> Launch instance from GAMI and test output. 
+
+
+Task 2 : Launch a Windows ec2 instance, Connect to it.. CHANGE ADMINISTRATOR PASSWORD, change wallpaper, install "putty" software, Install IIS and deliver custom webpage, Change timezone also..
+Now, STOP the INSTANCE and create a GoldenAMi. 
+-> Launch an instance from GAMI, connect and Verify you got all custom settings or not.???
+
+
+Task 3 : How to setup password authentication to ec2-user user instead of keypair authentication.
+https://comtechies.com/password-authentication-aws-ec2.html
+
 
