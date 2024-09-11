@@ -851,13 +851,8 @@ telnet to your ec2 instance on port 22 and test it.
 ================================================
 
 
-
-
-
-
-
-
-
+Task 1 : Launch an ec2 instance, make it as webserver, 
+Create an ALB, and deliver webpage on TG / Port :80. 
 
 Launch another ec2 instance and configure apache to run on port 8080.
 
@@ -865,9 +860,8 @@ Task 2 : on existing LB, Add listeners on 8080 and test output on 8080.
 
 **Open port 8080 at your ec2 SG and ELb SG.
 
+Task 4 : Make sure you implement Pipeline mechanism.
 
-Task 4 : Configure and deliver NLB. 
-
-Task 5 : Make sure you implement Pipeline mechanism.
+Task 5 : Configure and deliver NLB. 
 
 =========================================================================================
