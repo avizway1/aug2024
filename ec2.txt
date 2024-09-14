@@ -892,7 +892,7 @@ Create an ASG : What scaling method you required, desired count, in what vpc you
 ASG : Auto scaling group
 
 1. Create a GoldenAMI
-2. create an ELB
+2. Create an ELB
 3. Create ASG
 	3.1 Create launch Template : GoldenAMI, Instancetype, Security Group, keypair
 	3.2 Create scalings/asg : Manual scaling/ automatic scaling, ELB, Desired count..
@@ -917,6 +917,8 @@ ASG : Auto Scaling Group :
 --> DYnamic (Step/Simple/TargetTracking) Load 
 --> Scheduled scaling : 
 --> Manual : 
+
+Schedule Scaling : Based on given time, AWS adjust the Desired capacity on our ASG.
 
 
 ScaleIN : Remove the instance from ASG
@@ -957,12 +959,10 @@ Add load on your ec2 instance using stress package.
 Task 4 : Try Step scaling policy using shared script.
 
 
-
-
 ================================
 
 
-Task 3 : Create an updated version in "launch template" and test the blue and green deployment method.
+Task 5 : Create an updated version in "launch template" and test the blue and green deployment method.
 
 --> Launch an ec2 instance and make it as webserver, deliver this webpage "This is my ASG webpage".
 --> Create a Golden AMI from this instance. Use this in ASG and verify.
@@ -974,3 +974,27 @@ Task 3 : Create an updated version in "launch template" and test the blue and gr
 
 
 Task 6 : Configure Schedule scaling policy.
+
+
+====================================================================================================
+
+Security Groups place imp role in instance access.
+What traffic you want to deliver from your ec2 instance to outside world, you need to open it in inbound rules. (Traffic coming from outside world to ec2 instance and ec2 is responding to that request).
+Outbound : ec2 instance acessing traffic. Defaultly ec2 allowed with all incoming traffic (From ec2, we can access any protocol, any traffic from any network).
+
+--> SGs are stateful. We need to takes care about the inbound rules.
+--> Changes to the SG takes effect without any delay.
+--> We can add one SG to multiple ec2 instance.
+--> One instance can have multiple SGs also.
+--> There is No "DENY" option in SGs.
+
+
+-----------
+
+Plecement Groups : 
+
+--> Cluster PG : for group of ec2 instance, to get very very min latency, we can use this.
+--> partition PG : We can create 7 partitions, Every part will have its dedicated power connectivity and network connectivity.
+--> Spread PG : Every instance will have its own power connectivity and network connectivity.
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-strategies.html
