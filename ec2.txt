@@ -998,3 +998,67 @@ Plecement Groups :
 --> Spread PG : Every instance will have its own power connectivity and network connectivity.
 
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-strategies.html
+
+
+========================================================================================
+
+D: 16/09/24
+
+EFS : Elastic File System : File Share : Shared Storage solution for Multiple ec2 instances. : 
+--> Network File System : NFS v4.1 : Port 2049
+--> Support only Linux OS 
+--> No Pre Provisioning required.
+--> Add entry in "/etc/fstab" file.  Get entry info from "/etc/mtab" file
+
+
+mkdir instance1
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-084f2131397e5b3d2.efs.ap-south-1.amazonaws.com:/ instance1
+
+
+Install httpd and mount efs to /var/www/html/ path
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-084f2131397e5b3d2.efs.ap-south-1.amazonaws.com:/ /var/www/html/
+
+
+==> For windows OS we can use FSx, Works with SMB Protocol (Server message block)
+
+_______________________________________________________________________________________
+
+--> Create a security group and open NFS protocol. 
+			--> Open for entire VPC IP address
+			--> Open for ec2 instance private IP addresses
+		** --> Open for ec2 instance Security group (pipeline mechanism) (highly Recommened)
+		   --> As a last option, if no above option is working, open for Everyone. (Not recommended)
+
+
+Task : Create EFS and Mount it to multiple ec2 instances. Deliver Web Content to both the instances from EFS.
+
+
+Task : 
+1. Launch an ec2 instance, connect to it, 
+2. Create EFS.. 
+3. Install httpd in your ec2 instance.. 
+4. Mount EFS to /var/www/html/ and create index.html...  
+5. make it as perm mount. get EFS entry from /etc/mtab and write to to /etc/fstab
+6. Test your ec2 instance webpage.
+
+7. Stop above ec2 instance and create a goldenAMI.
+8. launch a new ec2 instance from GoldemAMi, test your webpage. (**)
+
+Then Proced to below steps
+==> Now create a GOLDENAMI.. or use Step 7 GAMI.. 
+==> Create a Load Balancer
+==> Configure ASG with this GOLDENAMI.. Connect to any of the ec2 instance, modify the content.. this modification should reflect in all instance.. 
+
+==================================
+
+Instance Stop protection : protect instance from accidental stops.
+Instance Termination protection : protect instance from accidental Termination.
+Shutdown behaviour : If we initiate a shutdown operation from/at OS, What should happend to our ec2 instance.
+	--> Stop
+	--> Terminate
+	
+
+
+	
