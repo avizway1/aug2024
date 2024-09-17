@@ -1059,6 +1059,142 @@ Shutdown behaviour : If we initiate a shutdown operation from/at OS, What should
 	--> Stop
 	--> Terminate
 	
+==========================================================================================
+
+D: 17/09/2024
+
+
+AWS CLI : 
+
+
+Step 1 : Download and install aws cli tools in your laptop. To verify installation run below comamnd
+
+aws --version
+
+Step 2 : Configure AWS CLI, FOr that we need AccessKeyID and SecretAccessKey.
+
+--> Create an IAM user.
+--> Then navigate to "Credentials" and generate keys.
+
+
+aws ec2 describe-instances --instance-ids i-0f864a025fd09ddd9
+
+
+IAM User : programatic Access : AccesskeyID and SecretAccesskey : AWS CLI.. 3rd, cdk/sdk
+
+https://aws.amazon.com/cli
+
+aws --version			--> Tells us what cli version is installed.
+
+configure the aws cli: 
+aws configure
+AccesskeyID:
+SecretAccesskey:
+Region:
+output :
+
+
+aws servicename commands
+
+aws s3 ls			--> List all the s3 buckets
+aws s3 ls s3://avinash.bucket	--> list objects from the s3 bucket
+aws s3 ls avinash.bucket
+
+aws s3 cp/sync sourcepath destinationpath
+
+aws s3 mb s3://avinash.bucket.1 --region ap-south-1
+
+aws s3 cp s3://avinash.bucket s3://avinash.bucket.1 --recursive
+
+aws s3 sync s3://avinash.bucket s3://avinash.bucket.1
+
+presign
+
+aws s3 presign s3://bucketname/objectname --expire 60
+
+aws s3 presign s3://avinash.bucket.1/s3.txt --expire 30
+
+___
+
+https://docs.aws.amazon.com/cli/latest/reference/
+
+__
+
+https://awsclibuilder.com/home
+
+___
+
+--profile : We can access multiple AWS accounts from cli using profile option.
+
+aws s3 ls ==> THis will pick default profile configured cred.
+aws s3 ls --profile uat ==> THis will pick UAT configured cred.
+
+aws configure --profile uat
+AccessKey
+SecretAccessKey
+Region
+output
+
+
+--debug ==> helps us to identify the process / where the issue occured.
+
+Credentials path in windows : C:/users/yourusername/.aws/ Enable Hidden directory view, 
+
+___________________________
+
+
+Task : Launch an ec2 instance using CLI.  (ami id, instance-type, subnet-id, security group id, keypair, count) (Example 4: To launch an instance and add tags on creation)
+
+Task 2 : Stop that ec2 instance using CLI comamnds.
+
+Task 3 : Start the same ec2 instance using cli.
+
+Task 4 : Create 2 IAM users with programaticAccess. 
+User1: S3FullAccess
+user2: ec2FullAccess
+
+Configure both of the users in your laptop with profile.
+
+--profile s3user
+--profile ec2user
+
+
+aws ec2 describe-instances --profile ec2user --> should list ec2 instance
+aws s3 ls --profile ec2user --> should not list s3 buckets
+
+aws ec2 describe-instances --profile s3user --> should not list ec2 instances
+aws s3 ls --profile s3user --> should list s3 buckets
+
+
+
+
+
+
+
+=================================
+
+
+
+Task 4 : Launch an ec2 instance and Configure a role to access s3 data. (don't configure accesskey/secretkey.. use roles)
+
+Task 5 : 
+1. Create a sample webpages (index.html & status.html) and Upload a webtemplates to an s3 bucket.. 
+2. launch an ec2 instance, while launching the instance, make your instance as webserver using userdata.
+3. While using userdata,  copy all the webcontent from s3 bucket to DocumentRoot path (/var/www/html/). Perform using "userdata".
+4. make sure you attach an IAM role to your ec2 instance that can provide s3 access.
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+#copy data from s3 to ec2		(--recursive)
+
+Task 6 (Optional : Fresher.. Mandatory: For Exp candidates) :  Create an IAM user in Account 1.. Allow this user to switch to "Account 2".. When he switch to account 2, Allow him to perform only "S3FullAccess".
+
+Refer : https://www.youtube.com/watch?v=sZiiB4yF0VY
+
+
+
 
 
 	
