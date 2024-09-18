@@ -1165,19 +1165,28 @@ aws s3 ls --profile ec2user --> should not list s3 buckets
 aws ec2 describe-instances --profile s3user --> should not list ec2 instances
 aws s3 ls --profile s3user --> should list s3 buckets
 
+==========================
+
+In real environment, In our Code, we dont hardcode CLI credentials, 
+In our ec2 instances, we dont store CLI Cred.. 
+
+==> Most of the times, we use Roles, Roles are more secure compare to CLI.Roles provides temporary generated credentails, this will change/rorate automatically.
+
+Step 1: create a Role and attach to your ec2 instance. (role also supports: ec2, rds, ecs, lambda, step function .....)
+
+Step 2 : Login to your ec2 instance and try to access the services (Role required a policy, whatever the polocies you atatch to role, those services only we can access from ec2 instance)
 
 
-
+Name of role (S3FullRole) : Where you attach/use (EC2 Instance) --> What permisisons you nrequired (s3fullaccess) --> Review and create.  ==> Go to ec2 instance and attach the role to your instance.
 
 
 
 =================================
 
 
+Task 1 : Launch an ec2 instance and Configure a role to access s3 data. (don't configure accesskey/secretkey.. use roles)
 
-Task 4 : Launch an ec2 instance and Configure a role to access s3 data. (don't configure accesskey/secretkey.. use roles)
-
-Task 5 : 
+Task 2 : 
 1. Create a sample webpages (index.html & status.html) and Upload a webtemplates to an s3 bucket.. 
 2. launch an ec2 instance, while launching the instance, make your instance as webserver using userdata.
 3. While using userdata,  copy all the webcontent from s3 bucket to DocumentRoot path (/var/www/html/). Perform using "userdata".
@@ -1189,12 +1198,99 @@ service httpd start
 chkconfig httpd on
 #copy data from s3 to ec2		(--recursive)
 
-Task 6 (Optional : Fresher.. Mandatory: For Exp candidates) :  Create an IAM user in Account 1.. Allow this user to switch to "Account 2".. When he switch to account 2, Allow him to perform only "S3FullAccess".
+Task 3 (Optional : Fresher.. Mandatory: For Exp candidates) :  Create an IAM user in Account 1.. Allow this user to switch to "Account 2".. When he switch to account 2, Allow him to perform only "S3FullAccess".
 
 Refer : https://www.youtube.com/watch?v=sZiiB4yF0VY
 
+==========================================================================================
+
+D: 18/09/2024
+
+Eventbridge
+
+--> Event Driven process
+--> Scheduled process
+--> Trigger both
+
+0 18 ? * MON-FRI *
+
+Event Bridge : 
+
+{"version":"0","id":"04bdca71-dc52-8e8c-f5a5-c8ed45d9d775","detail-type":"EC2 Instance State-change Notification","source":"aws.ec2","account":"501170964283","time":"2024-07-24T03:04:02Z","region":"ap-south-1","resources":["arn:aws:ec2:ap-south-1:501170964283:instance/i-0dc84d88fc003f776"],"detail":{"instance-id":"i-0dc84d88fc003f776","state":"stopped"}}
+
+
+ Sample Event : 
+
+ INPUT PATH:
+
+ {"instance-id":"$.detail.instance-id", "state":"$.detail.state", "time":"$.time", "region":"$.region", "account":"$.account"}
+
+ INPUT TEMPLATE: 
+
+ "At <time>, Status of your EC2 instance <instance-id> in the AWS Region <region> has changed to <state>."
+ 
+
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
+https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-cron-expressions
+
+
+==========================================================================================
+
+
+Task 1 : Configure Eventbridge to stop an ec2 instance at a particular time using Crontab. (9:15 Am)
+
+Task 2 : Configure to stop an ec2 instance after 5 minutes, trigger an email with custom email format.
+
+Task 3 : Configure to get an alert when someone deleted an s3 bucket. (Enable Data trail)
+
+==========================================================================================
 
 
 
+
+
+
+
+========================================
+
+
+Cloudwatch Dashboards: central location to monitor multiple resources usage. You can add individual resources metric graphs into a single dashboard.
+
+
+========================================
+
+Platform : Windows
+Platform : Linux
+
+d : Dev
+Q : QA
+s : Staging / NonProd
+u : uat 
+p : production
+Dr : DR Resource
+
+wi : Windows
+li : Linux
+wt : app code (World Trade), TW (Trade World) : app code
+C1/C2 : Client id 
+IN : Internal Servers (not client facing servers)
+01/02 : S.N for Server when we have multiple
+
+Naming Standards 
+P-WI-WT-AD :   
+P-LI-WT-HD :
+S-Li-ap2-c1 : 
+
+P-WI-IN-AD-01
+P-WI-IN-AD-02
+P-WI-IN-EX-01
+P-WI-WT-C1-03
+P-LI-WT-C2-01
+P-LI-WT-C2-02
+P-LI-WT-IN-01
+
+
+PWIWTC202
+ULIWTC201
 
 	
