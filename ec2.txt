@@ -1326,3 +1326,96 @@ PWIWTC202
 ULIWTC201
 
 
+====================================================================================================
+
+D: 20/09/2024
+
+ElasticBeanstalk : It provides preconfigured platforms. : Its a PaaS (platform as a Service)
+--> Python, java, go, ruby, php, .net, Docker
+--> We can deploy/upload our code to this platform. 
+--> AWS Creates ELB, ASG automatically for our instances, Based on the preset option we select.
+--> Less customisations at OS level, We cannot deliver multiple applications.
+
+====================================================================
+
+Metadata : metadata means, data about the data. 
+We are using ec2 instance to deliver some data/webpage. We do have some info about the ec2 instance.. 
+By using metadata url, we can get info about the ec2 instance.
+
+Linux : curl http://169.254.169.254/latest/meta-data/
+
+open browser and enter http://169.254.169.254/latest/user-data/
+
+ami-id
+ami-launch-index
+ami-manifest-path
+block-device-mapping/
+events/
+hostname
+identity-credentials/
+instance-action
+instance-id
+instance-life-cycle
+instance-type
+local-hostname
+local-ipv4
+mac
+managed-ssh-keys/
+metrics/
+network/
+placement/
+profile
+public-hostname
+public-ipv4
+public-keys/
+reservation-id
+security-groups
+services/
+
+
+Status Checks on ec2 instance : we have 2 types of status checks. When any instance is launched, aws performs 2 status checks.
+1. System Status check : underlying hardware status check. Healthy/unhealthy. 
+	fix : Perform stop and start multiple times. Otherwise, contact aws.
+2. Instance status check : os level checks, Boot health status, Volume size check.
+	fix : First reboot.. Then verify boot logs. "get Systemn logs" and inspect for the issue.
+		  We can perform "replace root volume" operation.
+
+
+
+
+
+
+===============================================
+
+Instance store volumes : We don't use this in real environments.   (NO FREE TIER ELIGIBILTY)
+	--> Also called as Ephemeral storages (Temporary storage).
+	--> We cannot STOP/Start the instance.
+	--> Storage will be delivered from underlying host/physical resources.
+	--> If required, we can reboot. We don't loss any data.
+	--> If underlying h/w failure happens, we'll loss all the data.
+	--> Accidental stop/start occured, We will loss all data.
+
+==================================
+
+Instance Isolation : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjr993FsAyS65uL4QPbGu8n_JcB6Fwq6jDylWglIapsQQjHfbcbir83OT-I-_a-nhvvo8&usqp=CAU
+
+VMWare: ESXi
+Microsoft ; Hyper-V
+AWS : Support XEN, AWS OWned "Nitro"
+
+Baremetal hypervisor : On top of Hardware, a hypervisor runs, we can laiunch guestOS on top of hypervisor.
+HostBased hypervisor : On top of hardware, a host OS runs (win 10/11), on top of it, we need to install hypervisor, then we can run GuestOS.
+
+==================================
+
+Dedicated and Shared tenancy :
+--> Shared tenancy : underlying hardware shared with multiple customers.
+--> Dedicated tenancy:
+	--> Dedicated instance : Dedicated instance provided by aws. No control on backend process.
+	--> Dedicated host : We can apply licenses at underlying physical resources. Also, we can launch multiple instances on a dedicated host.
+
+
+
+https://www.youtube.com/playlist?list=PLneBjIzDLECkZXsv7g-YsP6bBteTpTgLC
+
+go though ec2 Interview video
