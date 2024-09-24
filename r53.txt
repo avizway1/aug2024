@@ -1,0 +1,113 @@
+Route53 : AWS DNS Service : Domain Naming system/service : 
+
+www.google.com : 142.250.182.142 
+
+--> ELB DNS Name / Beanstalk Endpoint/ s3 endpoint / PublicIP : Domain Name
+
+Domain Registerer : We need to puchase a domain name. Domain name should be unique across the globe.  : Godaddy, Bigrock, nameCheap, google dns, AWS R53..
+After you purchase your domain name, Create a hostedZone in AWS and get the NS records and configure at Domain registrer.
+
+ICANN : Domain uniqueness. 
+IANA : Rootzone database :  
+
+Step 1 : Purchase a Domain Name at Domain Registrer : Freenom.com / godaddy
+
+Step 2 : Create a Hostedzone in AWS (Domain name = Hostedzone name) : 0.50$/Month/Hostedzone
+
+Public hosted zone : A public hosted zone determines how traffic is routed on the internet. (INTERNET)
+Private hosted zone : A private hosted zone determines how traffic is routed within an Amazon VPC. (INTRANET)
+
+Step 3 : When we create a hostedzone, we will get SOA (Start of Authority), NS (Name Server).. Grab the NS record information and Configure NS records at Domain Registrer..
+
+
+We need to create required DNS record : 
+A Record: Address record : Domain Name <--> IP Address
+Alias Record : AWS Own record : We always use Alias record along with A record : A+Alias
+
+A Record : Address record
+AAAA record : A record for IPv6
+CNAME record ; Cananical name : 
+MX record ; mail server record
+TXT record : 
+PTR record : 
+
+
+
+Choose Routing policy : 
+--> Simple RP
+--> Weighted RP 
+--> Latency RP 
+--> Failover RP
+--> GeoLocation RP
+
+--> MultiValue Answer RP
+--> IP Based
+--> Geoproximaty 
+
+https://in.godaddy.com/help/change-nameservers-for-my-domains-664
+
+ns-506.awsdns-63.com
+ns-540.awsdns-03.net
+ns-1592.awsdns-07.co.uk
+ns-1101.awsdns-09.org
+
+
+
+Mumbai : 
+index.html
+
+<html>
+<body>
+<h1 style="background-color:powderblue;">This is my Mumbai WebServer</h1>
+<p style="background-color:tomato;">Route53 Demo Session.</p>
+</body>
+</html>
+
+------------------
+
+USA
+
+<html>
+<body style="background-color:powderblue;">
+<h1>This is my USA WebServer</h1>
+<p>R53 Demo Session.</p>
+</body>
+</html>
+
+
+
+
+#!/bin/bash
+yum install httpd -y
+echo "<h1>This is a Mumbai WebServer</h1>" > /var/www/html/index.html
+service httpd start
+chkconfig httpd on
+
+
+#!/bin/bash
+yum install httpd -y
+echo "<h1>This is my USA WebServer</h1>" > /var/www/html/index.html
+service httpd start
+chkconfig httpd on
+
+
+ipconfig /flushdns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
