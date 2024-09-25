@@ -1,0 +1,104 @@
+
+
+
+IPv4 : 32 bit = 2^32 = 4,294,967,296 IPv4 addresses
+Ipv6 : 128 bit = 2^128 = 
+
+
+IPv4 has 5 Classes, Only 3 classes allocated for general public usage
+
+Class A : 0 - 126
+Class B : 128 - 191
+Class C : 192 - 223
+
+Class D : broadcosting/multicasting purpose
+Class E : R&D purpose
+
+127 -> loopback/localhost IP address
+
+
+Using this : 192.168.0.0 - 192.168.255.255 : Private IPs and Its free to use.
+
+Class A : 0 - 126   : 10.0.0.0 - 10.255.255.255 
+Class B : 128 - 191 : 172.16.0.0 - 172.31.255.255
+Class C : 192 - 223 : 192.168.0.0 - 192.168.255.255
+
+
+
+Network : 
+Host : 
+
+Class A : N.H.H.H
+Class B : N.N.H.H
+Class C : N.N.N.H
+
+
+192.168.0.0
+192.168.0.1
+192.168.0.2/3/4/5/6...255
+
+Total : 256Hosts we can add within 192.168.0. network
+
+192.168.1.0/1/2/3/4...255 
+
+Total : 256 Hosts we can add within 192.168.1. network
+=======================
+
+Class B : N.N.H.H
+
+128.172.0.0
+
+128.172.0.1
+128.172.0.2/2/4/5/6/7...255
+128.172.0.2...
+128.172.0.3
+
+128.172.0.255
+128.172.1.0.  /2.0 /
+
+128.172.(0-255).(0-255)
+
+==============
+Class A : N.H.H.H
+
+25.0.0.0 -
+
+25.(0-255).(0-255).(0-255)
+
+
+============================================
+
+general network 2 IPs reserved (Network ID and Brodcost ID)
+AWS Reserves 3 on top of general networks (2 DNS servers and 1 Future usage)
+
+
+192.168.100.10/32
+
+/32 = 32 - 32 = 0 = 2^0 = 1 IP
+/31 = 32 - 31 = 1 = 2^1 = 2 IPs
+/30 = 32 - 30 = 2 = 2^2 = 4 IPs
+/29 = 32 - 29 = 3 = 2^3 = 8 IPs
+
+/28 = 32 - 28 = 4 = 2^4 = 16 IPs - 5 = 11 Usable IPs
+/24 = 32 - 24 = 8 = 2^8 = 256 IPs - 5 = 251 Usable IPs
+/20 = 4096
+/16 = 32 - 16 = 16 = 2^16 = 65536 - 5 = 65531 Usable IPs
+
+Min VPC Supports : /28 
+Max VPC supports : /24 
+
+
+/24 = 256 IPs = 5 IPs reserved(customer cannot use) : 251 Usable IPs
+
+
+
+
+
+
+
+
+
+
+
+
+
