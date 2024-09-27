@@ -211,9 +211,105 @@ Task 3 : create a CustomVPC, Launch a JUMP Server in CustomVPC's PUBLIC Subnet (
 Task 4 : create a CustomVPC, Launch a JUMP Server in CustomVPC's PUBLIC Subnet (Use WINDOWS AMI), Now launch another EC2 instance (Amazon Linux) in CUSTOM VPC's PRIVATE SUBNET. Connect to Linux instance from Jump Server.
 
 
-
-
 Try This:
 Task 5 : create a CustomVPC, Launch a JUMP Server in CustomVPC's PUBLIC Subnet (LINUX AMI), Now launch another EC2 instance (LINUX) in CUSTOM VPC's PRIVATE SUBNET. Connect to Linux instance from Jump Server.
+
+
+======================================================================================================
+
+
+
+PublicRoute : We need to associate InternetGateway. 
+PrivateRoute without internet : Don't add NAT.
+PrivateRoute With Intenet : Create NAT Gateway and add NAT Gateway.
+
+VPC NAT Gateway (NO FREE TIER ELIGIBILITY) : Is designed to provide Internet to private Subnet resources. NAT always runs in custom VPCs public subnet. We need to generate an EIP (Elastic IP). 
+
+Private subnet ec2 instances want to access something from internet / endpoint hosted over the internet / patching purpose it needs internet. 
+
+--> Make sure your edit PrivateRoute, and add an entry with 0.0.0.0/0 via NAT gateway.
+
+____________________________________________________________________________________
+
+Enable Logging at VPC : 
+Flow Logs: We can enable flowlogs at 
+--> VPC Level
+--> Subnet Level
+--> Instance Level
+
+We can choose destination as 1. S3 bucket 2. Cloudwatch Logs groups 3. kenisis Forehose.
+
+
+--------------------------------
+
+permissions for flowlogs role policy:
+
+--> create a policy and add below permisisons to that policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+---
+
+Create a role and associate above policy to role you are creating.
+
+Set Trust entity as below:
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "vpc-flow-logs.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+======================================================================================================
+
+NACL : Network Access Control List : We can allow/deny traffic at Subnet level/AZ level using this NACLs.
+--> We need to takes care about the inbound rules and outbound rules.
+--> one subnet can be member of one NACL at a time.
+
+
+SG works as firewall at Instance level
+NACLs works as firewall at subnet level
+
+--> Default NACLs, : all subnets member of this. It allows all the traffic.
+--> New NACLs won't allow any traffic, Defaultly deny everything.
+
+--> Ephemeral ports / Temporary ports need to opened in NACL. 
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-ephemeral-ports
+1024-65535
+
+--> Lowest rule number will have highest permissions. 
 
 
