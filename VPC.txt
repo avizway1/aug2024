@@ -217,7 +217,7 @@ Task 5 : create a CustomVPC, Launch a JUMP Server in CustomVPC's PUBLIC Subnet (
 
 ======================================================================================================
 
-
+D: 27/09/2024
 
 PublicRoute : We need to associate InternetGateway. 
 PrivateRoute without internet : Don't add NAT.
@@ -284,16 +284,9 @@ Set Trust entity as below:
     ]
 }
 
-
-
-
-
-
-
-
-
-
 ======================================================================================================
+
+D: 28/09/2024
 
 NACL : Network Access Control List : We can allow/deny traffic at Subnet level/AZ level using this NACLs.
 --> We need to takes care about the inbound rules and outbound rules.
@@ -311,5 +304,51 @@ https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-ephe
 1024-65535
 
 --> Lowest rule number will have highest permissions. 
+
+====================================================================
+
+Endpoints : Private Links : It provides private connectivity to the resources. If we have any requirement, s3 requests/dynamodb request should not flow over the internet. 
+
+--> Without having internet also, we can access aws resources i.e; s3, dynamodb.. with the help of Endpoints.
+
+Gateway EP : Managed by AWS. Data transfer cost only. No hourly cost involved.
+Interface EP : An NIC (network interface card) creates with in our vpc, data flow happens over the NICard only. Per hour cost.
+
+
+You have an instance in private subnet without Internet(NAT GW), you want to access s3/other aws services.?
+
+
+==================
+**Advanced topic and used rarely.
+
+Endpoint Services : We can use this endpoint services to share a service from your own aws acocunt to anotyher aws account securely. We are controlling how trafic flow is happening in backend.
+
+--> refer youtube video : https://www.youtube.com/watch?v=MeIhu3eseyA
+
+=================
+
+NAT Gateway Works with IPv4. 
+If our VPC is configured to use IPv6, Instead of NAT Gateway, We use "Egress Only Internet Gateways".
+
+================
+
+Can we associate multiple CIDRs for our VPC.
+Yes.. 
+
+** Make sure your new cidr range is not conflicting with existing cidr range.
+
+
+Task : Test NACL
+Launch an ec2 instance in CustomVPC Public Subnet, make it as Webserver, Deliver for everyone.
+Now, Create a new NACL and add "Custom VPC Public Subnet" to Newly created NACL. then, try to access website.
+Open required ports in NACL and deliver website.
+
+Task 2 : Launch an ec2 instance in customVPC private subnet (without internet), Create a S3FullAccess role and attach it to ec2 instance.  Try to access s3.
+Now, create a S3 GATEWAY Endpoint and associate with private route and test s3 access.
+
+
+
+
+
 
 
