@@ -347,8 +347,39 @@ Task 2 : Launch an ec2 instance in customVPC private subnet (without internet), 
 Now, create a S3 GATEWAY Endpoint and associate with private route and test s3 access.
 
 
+================================================================================================
 
+D: 30/09/2024
 
+VPC Peering : Allow us to enable communication between multiple VPCs. (Same region, DIff region, Diff AWS accout VPCs)
 
+--> Requester VPC and Accepter VPC should not have same CIDR range.
+--> VPC Peering is non transitive peering. 
+--> Update both the VPCs route tables with Another VPC CIDR blocks via Peering connection. 
 
+			Requester VPC (MUMBAI)				Accepeter VPC (NV)
+VPC CIDR	192.168.0.0/22						10.0.0.0/16
+VPC ID		vpc-08eb76b74de20cef7				vpc-0ba782a5b1d7a0a49
+Region		ap-south-1							us-east-1
+ACC ID		123445678998						123445678998
+
+==================
+
+8 Subnets in environment :  2 public-web (Load Balncer & BH) (public), 2 application (private), 2 Database/data (private), 2 lambda.. 
+
+10 Subnets in environment :  2 Public - LoadBalancer & Bastian Host, 2 Web-Tier (Private), 2 Application/Logic (Private), 2 Database/Data (Private), 2 Lambda..
+
+==================
+
+VPN Connectivity (openvpn): https://www.youtube.com/watch?v=JSTyjISscNg
+
+Transit Gateway : https://www.youtube.com/watch?v=xyLlMBHy2wc
+
+==================
+
+Site-to-site vpn settings
+
+1. Create Virtual private gateway.
+2. Create Customer Gateway. You need to provide your corporate office Public IP address which is confired in Firewall.
+3. Using the Step 1 and step 2 resource and configure the Site to site vpn. Download the configuration and share it with Firewall team.
 
