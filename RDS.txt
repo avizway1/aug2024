@@ -37,6 +37,8 @@ VPC , 4 Subnets..
 
 Create a DB Subnet Group, Add 2 private subnets from Diff AZs (ap-south-1a & ap-south-1b private Subntes).. 
 
+
+
 Parameter group : When we launch a DB instance/cluster, we get access to db level only. We dont have any access to OS level. So, we cannot access configuration files/settings related to this DBs. If you want to define custom configurationm create a parameter group and use it.
 --> Some time, we may need to reboot the db to take effect this parameter store entries. 
 
@@ -111,12 +113,57 @@ Task 1 : Launch a Mysql RDS db instance in CUstomVPCs Private SUbnet. Launch a W
 
 Task 2 : Launch a Linux ec2 instance in custom VPC Public Subnet and Install Mysql client then connect to the RDS db instance. 
 
-
 Task 3 : Restore the shared sample db to the rds instance.  Run a SQL command to list all customer information. (SELECT * FROM db.table)
-
 
 Task 4 : Launch a POSTGRE SQL RDS db instance in CUstomVPCs Private SUbnet. Launch an ec2 instance in custom VPC Public Subnet and Install "PGAdmin" then connect to the RDS db instance.
 (OR/AND)
 Task 5 : Launch a MS SQL RDS db (Express) instance in CUstomVPCs Private SUbnet. Launch an ec2 instance in custom VPC Public Subnet and Install "SSMS (SQL Server management Studio)" then connect to the RDS db instance.
 
+==========================================================================================
 
+D: 02/10/2024
+
+
+
+MultiAZ Deployment : Designed for Failover/FT purpose. : Creates a standby in a different Availability Zone (AZ) to provide data redundancy, eliminate I/O freezes, and minimize latency spikes during system backups.
+
+
+Automated Backup : This feature creates backup copies of our RDS instances automatically.  Based on retention period, we can have backup copies in our aws env to restore. 
+Disable : 0 
+Min : 1 Day
+Max : 35 Days
+
+
+--> When we are launching db instance, it creates a backup copy automatically, if this feature is enabled. 
+
+7 Days : AWS keeps last 7 days backup copies. 
+
+
+Enhanced Monitoring : 1 Sec
+Basic Monitoring : 5 Min
+
+____
+
+We have "Read Replica" option for scaling purpose. It works with "Master-Slave" mechanism.
+
+Role : Instance   ||   Primary & Replica
+
+Primary : Supports read and write
+Replica : Supports only read operations
+
+
+====================================================================================================
+
+
+Manual Snapshots : We can create snapshots manually. These won't delete along with rds db instance.  We need to delete manually.
+
+Automated/system snapshots : AWS creates these, We cannot delete these.
+
+RDS won't work on In-Place restoration. Restoration happens as a new rds db instance with new endpoint.
+
+_________________
+
+Task : Launch a mysql rds db in custom vpc private subnet.
+Launch a Linux ec2 instance in "customVPC" public subnet. Make sure your rds and public subnet ec2 instance are communicating each other.
+
+Install "mysql workbench" in YOUR LOCAL LAPTOP. From your local laptop, using workbench and jump/public subnet instance, connect to RDS Database.
