@@ -123,16 +123,41 @@ Task 5 : Launch a MS SQL RDS db (Express) instance in CUstomVPCs Private SUbnet.
 
 D: 02/10/2024
 
-
-
 MultiAZ Deployment : Designed for Failover/FT purpose. : Creates a standby in a different Availability Zone (AZ) to provide data redundancy, eliminate I/O freezes, and minimize latency spikes during system backups.
+_
 
+We have "Read Replica" option for scaling purpose. It works with "Master-Slave" mechanism.
+
+Role : Instance   ||   Primary & Replica
+
+Primary : Supports read and write
+Replica : Supports only read operations
+
+_________________
+
+Task : Launch a mysql rds db in custom vpc private subnet.
+Launch a Linux ec2 instance in "customVPC" public subnet. Make sure your rds and public subnet ec2 instance are communicating each other.
+
+Install "mysql workbench" in YOUR LOCAL LAPTOP. From your local laptop, using workbench and jump/public subnet instance, connect to RDS Database.
+
+
+====================================================================================================
+
+D: 03/10/2024
+
+
+Manual Snapshots : We can create snapshots manually. These won't delete along with rds db instance.  We need to delete manually.
+
+Automated/system snapshots : AWS creates these, We cannot delete these.
+
+RDS won't work on In-Place restoration. Restoration happens as a new rds db instance with new endpoint.
+
+___
 
 Automated Backup : This feature creates backup copies of our RDS instances automatically.  Based on retention period, we can have backup copies in our aws env to restore. 
 Disable : 0 
 Min : 1 Day
 Max : 35 Days
-
 
 --> When we are launching db instance, it creates a backup copy automatically, if this feature is enabled. 
 
@@ -142,28 +167,130 @@ Max : 35 Days
 Enhanced Monitoring : 1 Sec
 Basic Monitoring : 5 Min
 
-____
+-------------
 
-We have "Read Replica" option for scaling purpose. It works with "Master-Slave" mechanism.
+Amazon Aurora : 2 Compatable versions.
+1. Mysql compatable
+2. postgreSQL compatable
 
-Role : Instance   ||   Primary & Replica
-
-Primary : Supports read and write
-Replica : Supports only read operations
-
-
-====================================================================================================
+--> Max storage aurora supports : 128 TB, remaining most of the DBs supports 64 TB only.
 
 
-Manual Snapshots : We can create snapshots manually. These won't delete along with rds db instance.  We need to delete manually.
+------------
 
-Automated/system snapshots : AWS creates these, We cannot delete these.
+Homegenious : mysql --> DMS --> AWS RDS Mysql
+heterogenious : IBM DB2 --> SCT (Schema Convertion tool) --> DMS --> AWS RDS Mysql/aurora
 
-RDS won't work on In-Place restoration. Restoration happens as a new rds db instance with new endpoint.
+Step 1 : create a DMS cluster (dms.t2.micro)
+Step 2 : Create source endpoint (Create an RDS cluster, and restore the shared sample Database), test the connectivity to DMS cluster
+Step 3 ; Create a Target endpoint (Create a new rds cluster) test the connectivity to DMS cluster
 
-_________________
+Step 4 : Create a Migration task using Source and target endpoints (step 2 and 3)
 
-Task : Launch a mysql rds db in custom vpc private subnet.
-Launch a Linux ec2 instance in "customVPC" public subnet. Make sure your rds and public subnet ec2 instance are communicating each other.
+migrate existing data. one time.
+Migrate changes only. only changes migrates.
+Migrate existing and continue migration. 
 
-Install "mysql workbench" in YOUR LOCAL LAPTOP. From your local laptop, using workbench and jump/public subnet instance, connect to RDS Database.
+
+Task Help Video : https://www.youtube.com/watch?v=SXuOjfKpIrs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================
+
+In-memory caching solution for DynamoDB : DAX (Database Accelerator)
+
+RDS has a Cache solution, Solution Name is "Elasticache".
+it has 2 opensource caching engines.
+--> MemcacheD
+--> Redis : Support authentication menthods (IAM Auth / RedisAUTH).
+
+
+Amazon Neptune : Fast, reliable graph database built for the cloud.
+Amazon DocumentDB : Fully-managed MongoDB-compatible database service
+Amazon keySpace : Kassandra Compatable AWS database service.
+Amazon QLDB : Fully Managed ledger Database.
+
+============
+
+Build TicTacToe using DynamoDB.
+
+DynamoDB Application :  https://www.youtube.com/watch?v=ePpnQhuQ6U0&t=713s
+
+https://github.com/avizway1/tictactoe-with-DynamoDB/blob/main/README.md
+
+=============
+
+Wordpress Task : https://github.com/avizway1/wordpress-project-repo
+
+video : https://www.youtube.com/watch?v=7BkGGc8u2Yk
+
+=============
+
+Task 3 : Perform Database Migration as we discussed.
+
+
+===========================================================================================
+
+How to connect to Redshift : 
+https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-using-workbench.html
+Tool Name : sql workbenh/J.
+
+
+OLAP : Online Analytical process : Redshift
+OLTP : Online Transactional process : RDS
+
+Redshift: 
+leader node : Designed to run query on compute nodes.
+Compute Node : it stores actual data
+
+
+Introduction to Redshift : https://www.youtube.com/watch?v=tSHCf1koYk8
+Redshift Serverless : https://www.youtube.com/watch?v=mEEbqIdQf7w
+Load Data from s3 to Redshift : https://www.youtube.com/watch?v=AcVNDbSy9L8
+Elasticache: https://www.youtube.com/watch?v=wp1QnBW2kIM
+
+===========================================================================================
+
+
+CREATE SCHEMA finance;
+USE finance;
+
+CREATE TABLE finance (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+INSERT INTO finance (name, department, salary) VALUES
+('Avinash Redy', 'finance', 65000.00),
+('Anudeep Reddy', 'finance', 63000.00),
+('Aravind t', 'finance', 62000.00),
+('Skanda reddy', 'finance', 67000.00),
+('raghu', 'finance', 64000.00);
+
+=============
