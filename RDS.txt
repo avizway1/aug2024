@@ -195,31 +195,9 @@ Migrate existing and continue migration.
 Task Help Video : https://www.youtube.com/watch?v=SXuOjfKpIrs
 
 
+===================================================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=================================
+D: 04/10/2024
 
 In-memory caching solution for DynamoDB : DAX (Database Accelerator)
 
@@ -236,24 +214,13 @@ Amazon QLDB : Fully Managed ledger Database.
 
 ============
 
-Build TicTacToe using DynamoDB.
-
-DynamoDB Application :  https://www.youtube.com/watch?v=ePpnQhuQ6U0&t=713s
-
-https://github.com/avizway1/tictactoe-with-DynamoDB/blob/main/README.md
-
-=============
-
-Wordpress Task : https://github.com/avizway1/wordpress-project-repo
-
-video : https://www.youtube.com/watch?v=7BkGGc8u2Yk
-
-=============
-
-Task 3 : Perform Database Migration as we discussed.
+DynamoDB : NOSQL database service. Single Digit Milli second latency at any scale of data.
 
 
-===========================================================================================
+
+========================================================================================================
+
+
 
 How to connect to Redshift : 
 https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-using-workbench.html
@@ -273,8 +240,28 @@ Redshift Serverless : https://www.youtube.com/watch?v=mEEbqIdQf7w
 Load Data from s3 to Redshift : https://www.youtube.com/watch?v=AcVNDbSy9L8
 Elasticache: https://www.youtube.com/watch?v=wp1QnBW2kIM
 
-===========================================================================================
+========================================================================================================
 
+Project 1 : 
+
+Wordpress Task : https://github.com/avizway1/wordpress-project-repo
+
+video : https://www.youtube.com/watch?v=7BkGGc8u2Yk
+
+=============
+
+Build and Deliver TicTacToe using DynamoDB.
+
+DynamoDB Application :  https://www.youtube.com/watch?v=ePpnQhuQ6U0&t=713s
+
+https://github.com/avizway1/tictactoe-with-DynamoDB/blob/main/README.md
+
+============
+
+Task 3 : Perform Database Migration as we discussed.
+
+
+===========================================================================================
 
 CREATE SCHEMA finance;
 USE finance;
