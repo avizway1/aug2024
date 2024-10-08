@@ -4,12 +4,9 @@ Cloudtrail : Logging service. Enabled by default. it stores only last 90 days lo
 
 -> If you want to setup a retention period for these logs, create a LifeCycle management Rule on S3 bucket. 
 
-• Management events provide information about management operations that are
-performed on resources in your AWS account. These are also known as control plane
-operations.
+• Management events provide information about management operations that are performed on resources in your AWS account. These are also known as control plane operations.
 
-• Data events provide information about the resource operations performed on or in a
-resource. These are also known as data plane operations. Data events are often high-volume activities. Data events can log s3, Dynamodb and Lambda services.
+• Data events provide information about the resource operations performed on or in a resource. These are also known as data plane operations. Data events are often high-volume activities. Data events can log s3, Dynamodb and Lambda services.
 
 • Insight Events : CloudTrail Insights events capture unusual activity in your AWS account. If you have Insights events enabled, and CloudTrail detects unusual activities.
 
@@ -47,6 +44,7 @@ Trusted Advisor recommendation help you optimize your AWS infrastructure, improv
 
 ================================================================================================
 
+D: 08/10/2024
 
 
 ACM : Amazon Certificate Manager : Generate SSL/TLS certificates. 
@@ -57,3 +55,29 @@ https://raw.githubusercontent.com/avizway/redirection/master/httptohttps
 
 
 Task 1 : generate SSL certificvate, apply it to Load Balancer and deliver via Route 53. Add rewrite rules.
+
+
+====================
+
+
+AWS Cloudfront : AWS CDN Service (Content Delivery Network) : Akamai, cloudflair..
+--> CLoudfront have a feature to protect our resources from DDoS attack.
+
+To get the latest data from the Origin / To clear the cache from Edge location, We can perform "Invalidation".
+
+Cache and origin request settings : Use legacy cache settings
+
+Default TTL : 86,400 Sec (1 Day)
+Max : 365 Days
+
+We must create SSL Cert in N Virginia to map with cloudfront distribution. 
+
+--> Based on endcustomer geo location, we can whitelist/blocklist the data.
+
+
+____________
+
+Task : Create an ELB, Deliver your ELB hosted website with Cloudfront distribution.
+Task : Create an S3 bucket, Place some data and deliver the data using Cloudfront distribution.
+
+
