@@ -81,3 +81,66 @@ Task : Create an ELB, Deliver your ELB hosted website with Cloudfront distributi
 Task : Create an S3 bucket, Place some data and deliver the data using Cloudfront distribution.
 
 
+================================================================================================
+
+D: 09/10/2024
+
+WAF : Web Application Firewall : Application ELB, CLoudfront, API Gateway.. : AWS WAF is a web application firewall service that lets you monitor web requests that are forwarded to an Amazon API Gateway API, an Amazon CloudFront distribution, or an Application Load Balancer. You can protect those resources based on conditions that you specify, such as the IP addresses that the requests originate from.
+
+NO FREE TIER ELIGIBILITY
+
+-->  We can create rules in WAF and apply on top of Application Load balancer / Cloudfront / Api gateway.
+____
+
+Protect our resources from DDoS attack : AWS Shield Advanced ($3000/Month)  + ASG + CloudFront
+
+
+AWS Shiled / AWS Shieled advanced : Designed to protect our resources from DDoS Attack. 
+
+Shield Enabled for all the aws account. 
+Shield advanced cost us 3000$/Month.. AWS Team monitor the DDoS attack/traffic.
+
+=================================================================================================
+
+
+Task : Create an ELB, Deliver your ELB hosted website with Cloudfront distribution.
+Task : Create an S3 bucket, Place some data and deliver the data using Cloudfront distribution.
+
+Task : Complete SNS Task
+https://github.com/avizway1/sns-project-repo 
+
+Task : Complete SQS Task
+https://github.com/avizway1/sqs-project-repo
+
+
+Task : Implement IAM Authentication to our RDS. **Optional for Freshers. 
+https://youtu.be/YqwJmPmIo-k?si=Kv8YZrtjjp0zvlCc
+
+Step Functions: https://youtu.be/pey12e2MyFQ?si=tyvQUTfvHWQ-0AXR
+
+
+======================================================================================================
+
+How many Account you manage : .?
+
+For Every Client : Sandbox/Training (POC), Dev, SIT/SQA, UAT and PRD ==> 5 Accounts
+Central logging account and Management Account
+
+Interview : Atleast 7 Accounts..
+
+AWS Organisations along with SSO: 
+
+Management account : From single aws account, we can manage multiple accounts. Centralized billing option for multiple aws accounts. 
+
+SCP : Service Control Policy : We can apply policy at Org level / OU level to manage permissions on AWS accounts.
+
+identity source : SSO / Active Directory
+Permission Sets : set of permissions in aws.
+you can see/find only org joined aws accounts in SSO.
+
+
+AD : https://www.youtube.com/watch?v=RDlBoAHVmZs
+Ad Connector : https://www.youtube.com/watch?v=Ca259gg6SoM
+Linux to AD : https://www.youtube.com/watch?v=LWi9-XL2vWQ
+
+Switch role : https://www.youtube.com/watch?v=sZiiB4yF0VY
