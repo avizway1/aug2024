@@ -1,0 +1,131 @@
+
+ECR : Elastic Containers Repository : Place to store container images.
+ECS : Elastic Container Service : 
+
+1. Install docker in your local laptop
+2. Install aws cli tools and configure an IAM user. (aws configure)
+
+ECR process : 
+1. Connect to the repo
+2. build "docker build -t imagename ."
+3. Tagging "docker tag imagename:latest"
+4. Push it "docker push URI/imagename:latest"
+
+
+Fargate : Fully managed by AWS. No backend instance, AWS manages everything.
+EC2 : we will get an instance, COnstainers runs within instance, We can login and perform os level operations.
+ECS Anywhere : We can install ecs agent on our own hardware, and deliver our application.
+
+
+Task Defination : Task definitions specify the container information for your application, such as how many containers are part of your task, what resources they will use, how they are linked together, and which host ports they will use.
+
+
+** https://ecsworkshop.com/
+https://eksworkshop.com/
+https://www.youtube.com/containersfromthecouch
+https://kodekloud.com/courses/docker-for-the-absolute-beginner/
+https://www.youtube.com/watch?v=fqMOX6JJhGo
+Terraform : https://www.youtube.com/watch?v=iRaai1IBlB0
+Ansible: Refer youtube channel.
+
+
+Task : Launch amazon linux 2 ec2 instance, Install docker and start the service. verify docker version
+
+--> Pull nginx docker image from dockerHub and run it and deliver the webpage.
+--> Pull httpd docker image from dockerHub and run it on diff port.
+
+Am sharing, Docker file to prepare your own nginx docker image. Create an index.html along with Dockerfile. 
+Prepare a docker image and run it locally.
+
+
+ECS : 
+--> fargate : AWS managed , Serverless
+--> ec2 
+--> ECS anywhere
+
+Task Definition : Settings or configuration of our task. 
+	--> Where is the Image you want to run
+	--> Confiration required for your image (cpu, memory, storage, logs)
+
+
+Task : Run nodejs application and nginx as a service/task on ecs cluster. Refer the github link for dockerfiles.
+
+-> Create a Service with multiple tasks and Integrate with Load Balancer.
+
+==============================================================================================
+
+Task : AWS Batch service.
+https://youtu.be/Ym9HWYFwFS8?si=HIM5SHe01UC5mtDk
+
+Task : Configure ETL process.
+https://youtu.be/1IJJmWKzeXQ?si=lv6lTdA_XI8vELQq
+
+==============================================================================================
+
+Codecommit
+CodeDeploy
+Codepipeline
+codebuild
+
+"S3/codecommit/git" --> Deploy to "ElasticBeanstalk"
+
+________________
+
+Create an IAM user, Make sure he has "Adminaccess / Codecommit full access", Generate "programatic keys (Accesskeyid&secretaccesskey)" and configure it in your local laptop.
+
+aws configure
+accesskey : 
+secretaccesskey : 
+region : ap-south-1
+output :  
+
+You need to have some softwares. 
+1. Install Python
+2. Install git
+3. install grc : pip install git-remote-codecommit
+
+
+git add .
+git status
+git commit -m "commit msg"
+git push
+git pull
+git clone
+git init
+
+git init
+git status
+git add .
+git commit -m "commit msg"
+git remote add origin https://github.com/avizway1/aws730repo.git
+git push -u origin master
+
+
+rebase option : 
+git fetch origin
+git rebase origin/master
+git push -u origin master
+
+
+
+Task : get familier with above commands.
+
+
+GIT : 
+https://www.youtube.com/watch?v=rtI26X6FJX0&list=PLneBjIzDLECkdgoinrTO7D519zgPEmcte
+
+
+GIT in Telugu : https://youtube.com/playlist?list=PLneBjIzDLECn9mfKLdwHK_5nQHvFH44PL&si=D8N2_0WCoGMb7UPV
+
+Maven in Telugu : https://www.youtube.com/playlist?list=PLneBjIzDLECmfpxTEVxRKiwuEN7SC1nem
+
+Jenkins in Telugu : https://www.youtube.com/playlist?list=PLneBjIzDLEClYnrjUyz3_-KUeXGBuj5F6
+
+================================================================================
+
+
+Task : Create a gitHub repo and add some code (index.html), push code to repo.
+Create a CICD pipeline, and deploy this code to ElasticBeanstalk.
+
+
+
