@@ -20,6 +20,17 @@ ECS Anywhere : We can install ecs agent on our own hardware, and deliver our app
 Task Defination : Task definitions specify the container information for your application, such as how many containers are part of your task, what resources they will use, how they are linked together, and which host ports they will use.
 
 
+ECS process:
+
+Step 1 : Create a ECR and push the image
+Step 2 : Create a ECS cluster with Fargate method.
+Step 3 : Create a task Definition with ECR and Required configuration for your tasks.
+Step 4 : Create an individual task and test the output. 
+Step 5 : Create a Load Balancer, choose target group registration type as "IP Address"
+Step 6 : Create a Service and integrate with load Balancer.
+
+
+
 ** https://ecsworkshop.com/
 https://eksworkshop.com/
 https://www.youtube.com/containersfromthecouch
