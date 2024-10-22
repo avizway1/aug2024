@@ -139,4 +139,14 @@ Task : Create a gitHub repo and add some code (index.html), push code to repo.
 Create a CICD pipeline, and deploy this code to ElasticBeanstalk.
 
 
+Jenkins free course: 
+https://www.udemy.com/course/jenkinswithavinash/?couponCode=JENKINS2024
+
+
+Task : Complete ETL process..
+
+https://youtu.be/1IJJmWKzeXQ?feature=shared
+
+
+
 
