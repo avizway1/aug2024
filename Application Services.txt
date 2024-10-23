@@ -148,5 +148,25 @@ Task : Complete ETL process..
 https://youtu.be/1IJJmWKzeXQ?feature=shared
 
 
+============================================================================================================
 
+D: 23/10/2024
+
+
+Secrets Manager : We can store sensitive information i.e; username and poassword. Instead of hardcoding sensitive information in our application code, we can store and call secrets to use the sensitive info.
+-> We can rotate the secrets periodically using a lambda function.
+
+SSM Parameters : We can store and retrive non-sensitive inforamtion.
+
+Monthly Calc: 
+https://calculator.aws/#/
+
+To know free tier status : https://aws.amazon.com/free
+
+AWS Budgets : We can set alerts based on usage. 
+
+AWS Cost Explorer : we can explore the pricing of AWS services (daily basis / Monhtly basis)
+
+
+Project : 
 
